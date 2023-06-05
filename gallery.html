@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery design</title>
+
+    <!-- <style>
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-gap: 10px;
+        }
+
+        .image {
+            position: relative;
+        }
+
+        .image img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+        @media (max-width: 768px) {
+            .gallery {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            }
+        }
+
+        @media (max-width: 480px) {
+            .gallery {
+                grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            }
+        }
+    </style> -->
+
+    <!-- <style>
+    .gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.image {
+  flex: 1 1 auto;
+  margin-bottom: 10px;
+}
+
+.image img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+@media (max-width: 768px) {
+  .image {
+    flex-basis: 48%;
+  }
+}
+
+@media (max-width: 480px) {
+  .image {
+    flex-basis: 100%;
+  }
+}
+
+</style> -->
+
+    <style>
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-gap: 10px;
+            grid-auto-flow: dense;
+        }
+
+        .image {
+            position: relative;
+        }
+
+        .image img {
+            display: block;
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+
+        }
+
+        @media (min-width: 1024px) {
+            .gallery {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        @media (min-width: 1280px) {
+            .gallery {
+                grid-template-columns: repeat(5, 1fr);
+            }
+        }
+
+        @media (min-width: 1440px) {
+            .gallery {
+                grid-template-columns: repeat(6, 1fr);
+            }
+        }
+
+        @media (min-width: 1680px) {
+            .gallery {
+                grid-template-columns: repeat(7, 1fr);
+            }
+        }
+
+        @media (min-width: 1920px) {
+            .gallery {
+                grid-template-columns: repeat(8, 1fr);
+            }
+        }
+
+        .horizontal {
+            grid-column: auto / span 2;
+        }
+
+        .vertical {
+            grid-row: auto / span 2;
+        }
+
+        .normal {
+
+            grid-row: auto / span 2;
+            grid-column: auto / span 2;
+        }
+    </style>
+
+    <!-- <style>
+    .gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-gap: 10px;
+}
+
+.image {
+  position: relative;
+  width: 100%;
+}
+
+.image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  max-height: 100%;
+}
+
+@media (min-width: 1024px) {
+  .gallery {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (min-width: 1280px) {
+  .gallery {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+@media (min-width: 1440px) {
+  .gallery {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+
+@media (min-width: 1680px) {
+  .gallery {
+    grid-template-columns: repeat(7, 1fr);
+  }
+}
+
+@media (min-width: 1920px) {
+  .gallery {
+    grid-template-columns: repeat(8, 1fr);
+  }
+}
+
+</style> -->
+
+</head>
+
+<body>
+    <div class="gallery">
+        <div class="image normal">
+            <img src="./image/image1.png" alt="Image 1">
+        </div>
+        <div class="image vertical">
+            <img src="./image/image2.png" alt="Image 2">
+        </div>
+        <div class="image horizontal">
+            <img src="./image/image3.png" alt="Image 3">
+        </div>
+        <div class="image normal">
+            <img src="./image/image4.png" alt="Image 1">
+        </div>
+        <div class="image normal">
+            <img src="./image/image5.png" alt="Image 2">
+        </div>
+        <div class="image vertical">
+            <img src="./image/image6.png" alt="Image 3">
+        </div>
+        <!-- Add more image divs as needed -->
+    </div>
+
+    <style>
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            overflow: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .modal img {
+            display: block;
+            max-width: 100%;
+            max-height: 90%;
+            object-fit: contain;
+            align-self: self-start;
+        }
+
+
+        .close {
+            color: #ffffff;
+            font-size: 30px;
+            font-weight: bold;
+            position: absolute;
+            top: 15px;
+            right: 25px;
+            background: #f52424;
+            cursor: pointer;
+            padding: 7px 15px;
+            border-radius: 100%;
+        }
+
+        .close:hover {
+            color: #ccc;
+        }
+    </style>
+    <div style="display:none" id="myModal" class="modal">
+        <span class="close">&times;</span>
+        <img src="" alt="Modal Image" id="modalImage">
+        <div style="display: none;" class="comment">
+            <div class="comments">
+                <p>Lorem ipsum dolor sit,  illum quasi in expedita porro omnis. Pariatur quo odit iure eius tenetur dignissimos quae eveniet blanditiis id fugit!</p>
+            
+                <p>amet consectetur adipisicing elit. Harum suscipit officiis dignissimos</p>
+                <p>amet consectet illum quasi in expedita porro om ur adipisicing elit. Harum suscipi</p>
+            </div>
+
+            <div class="new-comment-wrapper">
+                <textarea name="" id="" cols="30" rows="3"></textarea>
+                <span>Enter</span>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script>
+
+    document.addEventListener("DOMContentLoaded", function () {
+        var images = document.querySelectorAll(".image img");
+        var modal = document.getElementById("myModal");
+        var modalImg = document.getElementById("modalImage");
+        var closeBtn = document.getElementsByClassName("close")[0];
+
+        images.forEach(function (image) {
+            image.addEventListener("click", function () {
+                openModal(this.src);
+            });
+        });
+
+        closeBtn.addEventListener("click", function () {
+            closeModal();
+        });
+
+        function openModal(imageUrl) {
+            modal.style.display = "flex";
+            modalImg.src = imageUrl;
+            modal.addEventListener('click', function (context) {
+
+                //console.log(context.srcElement.src)
+                if (imageUrl !== context.srcElement.src) {
+                    modal.style.display = "none";
+                }
+            })
+        }
+
+        function closeModal() {
+            modal.style.display = "none";
+        }
+    });
+
+
+</script>
+
+</html>
